@@ -29,6 +29,9 @@ AppOptions::AppOptions(int argc, const char* argv[])
   , m_shell(m_po.add("shell").description("Start an interactive console to execute scripts"))
 #endif
   , m_batch(m_po.add("batch").mnemonic('b').description("Do not start the UI"))
+  , m_pixelJob(m_po.add("pixel-job")
+                 .requiresValue("<filename.json>")
+                 .description("Execute a Universal Pixel Factory job"))
   , m_preview(m_po.add("preview").mnemonic('p').description(
       "Do not execute actions, just print what will be\ndone"))
   , m_saveAs(m_po.add("save-as")
@@ -193,7 +196,8 @@ AppOptions::AppOptions(int argc, const char* argv[])
     m_showHelp = m_po.enabled(m_help);
     m_showVersion = m_po.enabled(m_version);
 
-    if (m_startShell || m_showHelp || m_showVersion || m_po.enabled(m_batch)) {
+    if (m_startShell || m_showHelp || m_showVersion || m_po.enabled(m_batch) ||
+        m_po.enabled(m_pixelJob)) {
       m_startUI = false;
     }
   }

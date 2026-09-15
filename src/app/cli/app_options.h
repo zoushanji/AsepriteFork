@@ -43,6 +43,9 @@ public:
 
   const ValueList& values() const { return m_po.values(); }
 
+  // Universal Pixel Factory source-backend entry point.
+  const Option& pixelJob() const { return m_pixelJob; }
+
   // Export options
   const Option& saveAs() const { return m_saveAs; }
   const Option& palette() const { return m_palette; }
@@ -119,6 +122,7 @@ private:
   Option& m_shell;
 #endif
   Option& m_batch;
+  Option& m_pixelJob;
   Option& m_preview;
   Option& m_saveAs;
   Option& m_palette;

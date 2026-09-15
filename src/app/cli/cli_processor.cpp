@@ -13,6 +13,7 @@
 
 #include "app/cli/app_options.h"
 #include "app/cli/cli_delegate.h"
+#include "app/cli/pixel_job.h"
 #include "app/commands/commands.h"
 #include "app/commands/params.h"
 #include "app/console.h"
@@ -188,8 +189,14 @@ int CliProcessor::process(Context* ctx)
 
       // Special options/commands
       if (opt) {
+        // --pixel-job <file.json>
+        if (opt == &m_options.pixelJob()) {
+          const int code = run_pixel_job(ctx, value.value());
+          if (code != 0)
+            return code;
+        }
         // --data <file.json>
-        if (opt == &m_options.data()) {
+        else if (opt == &m_options.data()) {
           if (m_exporter)
             m_exporter->setDataFilename(value.value());
         }

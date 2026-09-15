@@ -269,6 +269,7 @@ target_sources(app-lib PRIVATE
   cli/cli_open_file.cpp
   cli/cli_processor.cpp
   cli/default_cli_delegate.cpp
+  cli/pixel_job.cpp
   cli/preview_cli_delegate.cpp
   closed_docs.cpp
   cmd.cpp
